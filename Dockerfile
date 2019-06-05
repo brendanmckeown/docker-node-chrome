@@ -1,4 +1,8 @@
-FROM node:10-slim
+FROM node:10
+
+# Install base packages
+RUN apt-get update -y && \
+	  apt-get install -y git sudo software-properties-common
 
 # Install latest chrome dev package and fonts to support major charsets (Chinese, Japanese, Arabic, Hebrew, Thai and a few others)
 # Note: this installs the necessary libs to make the bundled version of Chromium that Puppeteer
@@ -33,4 +37,4 @@ ENTRYPOINT ["dumb-init", "--"]
 # Run everything after as non-privileged user.
 # USER pptruser
 
-# CMD ["google-chrome-unstable"]
+CMD ["google-chrome-unstable"]
